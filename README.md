@@ -11,7 +11,7 @@ This program utilizes the `yt-dlp` library to download YouTube Shorts and save t
 ## Features in Development
 
 - Add loop to keep the .csv in memory so that mistaken entries can be reversed.
-- This downloader used to be manual, 1:1, as in one video at a time. With them all compiled in a single .csv the seemingly single bottleneck would be your internet speed, however, you'd be wrong. YouTube will restrict this spammy behavior if you exceed certain "beyond human" interactions. To counteract this, allow the downloader to run on a delay, at a more "human" pace.
+- Add a delay randomizer to the download queue.
 
 ## Requirements
 
