@@ -38,7 +38,13 @@ def download_videos():
     if not os.path.exists('downloads'):
         os.makedirs('downloads')
     
-    # Configure yt-dlp options
+    #   Configure yt-dlp options
+    #'format' select the source desired
+    #'outtmpl' where (to output), replace video title, replaces extension of download, ex. "downloads/My_Video.mp4"
+    #'quiet' if set to True, no progress bar is logged to console
+    #'no_warnings' if set to True, warning messages are muted, not helpful for debugging
+    #'ignoreerrors' if set to False, errors will halt the program. 
+    
     ydl_opts = {
         'format': 'best',  # Get best quality
         'outtmpl': 'downloads/%(title)s.%(ext)s',  # Output template
@@ -47,6 +53,11 @@ def download_videos():
         'ignoreerrors': True  # Continue on error
     }
     
+    #   For loop, Goes Through CSV
+    #recall that each row is a dictionary from our CSV, loop through each entry
+    #only attempt to download if status != complete (skips already downloaded videos)
+    #
+
     for row in rows:
         if row['status'] != 'completed':
             try:
