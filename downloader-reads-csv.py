@@ -55,8 +55,11 @@ def download_videos():
     
     #   For loop, Goes Through CSV
     #recall that each row is a dictionary from our CSV, loop through each entry
-    #only attempt to download if status != complete (skips already downloaded videos)
-    #
+    #only attempt to download if status != completed (skips already downloaded videos)
+    #standard try / accept block
+    #yt_dlp.YoutubeDL creates a new downloader object
+    #(ydl_opts) is our configuration dictionary
+    #with statement keeps our code clean, "create this temporarily, use it, then clean it up"
 
     for row in rows:
         if row['status'] != 'completed':
@@ -73,7 +76,14 @@ def download_videos():
                 row['status'] = 'failed'
                 print(f"Error downloading {row['title']}: {str(e)}")
     
-    # Write updated statuses back to CSV
+    #   Write updated statuses back to CSV
+    #open the CSV in write mode, essentially we are replacing the old with this new one
+    #'writer' object created, csv.DictWriter allows us to write to CSV files
+    #'file' where to write to
+    #'fieldsnames" creates the following fieldnames
+    #note: this template must match the keys in our dictionary and because it is simple it does
+    #
+
     with open('videos.csv', 'w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=['url', 'title', 'status'])
         writer.writeheader()
