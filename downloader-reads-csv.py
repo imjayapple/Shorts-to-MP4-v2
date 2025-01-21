@@ -82,7 +82,15 @@ def download_videos():
     #'file' where to write to
     #'fieldsnames" creates the following fieldnames
     #note: this template must match the keys in our dictionary and because it is simple it does
-    #
+    #now write the row headers at the top of the column
+    #'writerows'= writes all the dictionaries at once
+    #(rows)= our list of dictionaries containing our data
+    #ex. for each dictionary it looks at the 'fieldnames' we specified, and so
+    #'url': 'https://youtube.com/...',
+    #'title': 'My Video',
+    #'status': 'completed'
+    #-> this becomes the CSV row:
+    # https://youtube.com/...,My Video,completed
 
     with open('videos.csv', 'w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=['url', 'title', 'status'])
