@@ -38,20 +38,9 @@ def download_videos():
     if not os.path.exists('downloads'):
         os.makedirs('downloads')
     
-    #   Configure yt-dlp options
-    #'format' select the source desired
-    #'outtmpl' where (to output), replace video title, replaces extension of download, ex. "downloads/My_Video.mp4"
-    #'quiet' if set to True, no progress bar is logged to console
-    #'no_warnings' if set to True, warning messages are muted, not helpful for debugging
-    #'ignoreerrors' if set to False, errors will halt the program. 
+
     
-    ydl_opts = {
-        'format': 'best',  # Get best quality
-        'outtmpl': 'downloads/%(title)s.%(ext)s',  # Output template
-        'quiet': False,  # Show progress
-        'no_warnings': False,
-        'ignoreerrors': True  # Continue on error
-    }
+
     
     #   For loop, Goes Through CSV
     #recall that each row is a dictionary from our CSV, loop through each entry
@@ -66,6 +55,21 @@ def download_videos():
             try:
                 print(f"\nAttempting to download: {row['title']}")
                 
+                #   Configure yt-dlp options
+                #'format' select the source desired
+                #'outtmpl' where (to output), replace video title, replaces extension of download, ex. "downloads/My_Video.mp4"
+                #'quiet' if set to True, no progress bar is logged to console
+                #'no_warnings' if set to True, warning messages are muted, not helpful for debugging
+                #'ignoreerrors' if set to False, errors will halt the program. 
+
+                ydl_opts = {
+                    'format': 'best',
+                    'outtmpl': f"downloads/{row['title']}.%(ext)s",  # Use CSV title
+                    'quiet': False,
+                    'no_warnings': False,
+                    'ignoreerrors': True
+                }
+
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([row['url']])
                 
