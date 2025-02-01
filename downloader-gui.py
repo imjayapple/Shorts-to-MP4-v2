@@ -32,8 +32,8 @@ def add_video():
 
 # Create the main window
 window = tk.Tk()
-window.title("YouTube Video Downloader")
-window.geometry("400x200")  # Set window size
+window.title("YouTube Shorts / Full-length Video Downloader")
+window.geometry("450x180")  # Set window size
 
 # Create and place URL input
 tk.Label(window, text="Video URL:").pack(pady=5)
